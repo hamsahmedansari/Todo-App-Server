@@ -40,10 +40,23 @@ router.post("/", async (req, res) => {
 });
 
 // getSingleTodo
-router.get("/:id", (req, res) => {
-  res.status(200).json({
-    message: "get Single Todo"
-  });
+router.get("/:id", async (req, res) => {
+  let id = req.params.id;
+  try {
+    let result = await Todo.findById(id);
+    if (!result)
+      return res.status(404).json({
+        message: "Todo Not Found "
+      });
+    res.status(200).json({
+      message: "get Single Todo",
+      data: result
+    });
+  } catch (error) {
+    res.status(400).json({
+      message: "Todo Not Found with Bad Request"
+    });
+  }
 });
 
 // updateSingleTodo
