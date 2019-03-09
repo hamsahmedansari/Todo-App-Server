@@ -3,10 +3,10 @@ const router = express.Router();
 const { Todo } = require("../../models/todo");
 // allTodo
 router.get("/", async (req, res) => {
-  const todos = await Todo.find();
+  const result = await Todo.find();
   res.status(200).json({
     message: "All Todo",
-    data: todos
+    data: result
   });
 });
 
@@ -34,7 +34,7 @@ router.post("/", async (req, res) => {
   let result = await obj.save();
 
   res.status(200).json({
-    message: "Create Todo",
+    message: "Successfully Created Todo",
     data: result
   });
 });
