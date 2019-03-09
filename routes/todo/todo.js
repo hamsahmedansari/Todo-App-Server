@@ -89,10 +89,30 @@ router.put("/:id", async (req, res) => {
 });
 
 // deleteSingleTodo
-router.delete("/:id", (req, res) => {
-  res.status(200).json({
-    message: "Delete Single Todo"
-  });
+router.delete("/:id", async (req, res) => {
+  let id = req.params.id;
+  try {
+    let todo = await Todo.findById(id);
+    if (!todo)
+      return res.status(404).json({
+        message: "Todo Not Found "
+      });
+    const result = await Todo.findByIdAndRemove(id);
+    if (result) {
+      res.status(200).json({
+        message: "Successfully Deleted",
+        data: result
+      });
+    } else {
+      res.status(500).json({
+        message: "Server Error"
+      });
+    }
+  } catch (error) {
+    res.status(400).json({
+      message: "Todo Not Found with Bad Request"
+    });
+  }
 });
 
 module.exports = router;
