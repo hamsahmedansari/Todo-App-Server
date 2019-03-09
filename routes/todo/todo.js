@@ -60,10 +60,32 @@ router.get("/:id", async (req, res) => {
 });
 
 // updateSingleTodo
-router.put("/:id", (req, res) => {
-  res.status(200).json({
-    message: "Update Single Todo"
-  });
+router.put("/:id", async (req, res) => {
+  let id = req.params.id;
+  try {
+    let todo = await Todo.findById(id);
+    if (!todo)
+      return res.status(404).json({
+        message: "Todo Not Found "
+      });
+
+    todo.title = "title" in req.body ? req.body.title : todo.title;
+    todo.description =
+      "description" in req.body ? req.body.description : todo.description;
+    todo.type = "type" in req.body ? req.body.type : todo.type;
+    todo.status = "status" in req.body ? req.body.status : todo.status;
+    todo.isDelete = "isDelete" in req.body ? req.body.isDelete : todo.isDelete;
+    todo.date = Date.now();
+    const result = await todo.save();
+    res.status(200).json({
+      message: "Updated Single Todo",
+      data: result
+    });
+  } catch (error) {
+    res.status(400).json({
+      message: "Todo Not Found with Bad Request"
+    });
+  }
 });
 
 // deleteSingleTodo
