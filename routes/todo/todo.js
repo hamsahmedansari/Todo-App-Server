@@ -1,17 +1,41 @@
 const express = require("express");
 const router = express.Router();
-
+const { Todo } = require("../../models/todo");
 // allTodo
-router.get("/", (req, res) => {
+router.get("/", async (req, res) => {
+  const todos = await Todo.find();
   res.status(200).json({
-    message: "All Todo"
+    message: "All Todo",
+    data: todos
   });
 });
 
 // createTodo
-router.post("/", (req, res) => {
+router.post("/", async (req, res) => {
+  if (
+    !req.body.hasOwnProperty("title") ||
+    !req.body.hasOwnProperty("description") ||
+    !req.body.hasOwnProperty("type") ||
+    !req.body.hasOwnProperty("status") ||
+    !req.body.hasOwnProperty("isDelete")
+  ) {
+    return res.status(400).json({
+      message: "Form Filed are empty please recheck it"
+    });
+  }
+  let obj = new Todo({
+    title: req.body.title,
+    description: req.body.description,
+    type: req.body.type,
+    status: req.body.status,
+    isDelete: req.body.isDelete
+  });
+
+  let result = await obj.save();
+
   res.status(200).json({
-    message: "Create Todo"
+    message: "Create Todo",
+    data: result
   });
 });
 

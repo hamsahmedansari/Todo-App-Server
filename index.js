@@ -1,7 +1,9 @@
 const express = require("express");
 const app = express();
-
+require("./connect");
 const todo = require("./routes/todo/todo");
+
+app.use(express.json());
 
 // index
 app.get("/", (req, res) => {
