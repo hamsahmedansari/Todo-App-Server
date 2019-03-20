@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 require("./connect");
 const todo = require("./routes/todo/todo");
+const post = require("./routes/post/post");
 
 app.use(express.json());
 
@@ -23,6 +24,8 @@ app.get("/", (req, res) => {
 });
 // allTodo
 app.use("/todo", todo);
+// allPost
+app.use("/post", post);
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`App is running on Port ${port}`));
