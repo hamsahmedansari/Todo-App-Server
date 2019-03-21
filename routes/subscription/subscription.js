@@ -34,6 +34,8 @@ router.post("/", async (req, res) => {
     "ZwNdctHaY1S27iETsNa9vl9c3xWZL8MTOH_mRH14IoU"
   );
   for (let i = 0; i < allResult.length; i++) {
+    console.log(allResult[i]);
+
     let pushConfig = {
       endpoint: allResult[i].endpoint,
       keys: {
