@@ -33,8 +33,8 @@ router.post("/", async (req, res) => {
   const allResult = await Subscription.find();
   webPush.setVapidDetails(
     "mailto:abc@abc.com",
-    "BFxOH3BqZRmBcbqunY0kcv5OqJQt-RxAnRmyPjBIXaCwaHQR0uGd_bFH3D6K8oY4FGNLhMVmqFmoMkZYYHogZU0",
-    "ZwNdctHaY1S27iETsNa9vl9c3xWZL8MTOH_mRH14IoU"
+    "BAayUDO4uZVF2dLBcd1hu5XwuJLY53T3t4o_vQQZxq4Gh7HbTZNR3sl32sGzVgGDlydeto-7bAIS6heuI9LEZB4",
+    "6Jnctq0cOq7IhXrC63vHNEJ80N44q0vaQ2LK3mHwaxA"
   );
   for (let i = 0; i < allResult.length; i++) {
     console.log(allResult[i]);
