@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon index.js"
+    "start": "nodemon index.js",
+    "web-push": "web-push"
   },
   "repository": {
     "type": "git",
@@ -27,6 +28,7 @@
   "dependencies": {
     "express": "^4.16.4",
     "mongoose": "^5.4.18",
-    "nodemon": "^1.18.10"
+    "nodemon": "^1.18.10",
+    "web-push": "^3.3.3"
   }
 }
