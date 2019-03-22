@@ -48,7 +48,12 @@ router.post("/", async (req, res) => {
     };
     webPush.sendNotification(
       pushConfig,
-      JSON.stringify({ title: "New Post", content: "New Post added!" })
+      JSON.stringify({
+        title: "New Post",
+        content: result.title,
+        url: "/",
+        image: result.image
+      })
     );
   }
   res.status(200).json({
