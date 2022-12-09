@@ -27,7 +27,7 @@
   "homepage": "https://github.com/hamsahmedansari/Todo-App-Server#readme",
   "dependencies": {
     "cloudinary": "^1.13.2",
-    "express": "^4.16.4",
+    "express": "^4.17.3",
     "mongoose": "^5.4.18",
     "nodemon": "^1.18.10",
     "web-push": "^3.3.3"
